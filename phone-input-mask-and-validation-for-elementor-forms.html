@@ -1,0 +1,61 @@
+<script>
+    (function () {
+      const initialized = new WeakSet();
+    
+      function formatarTelefone(input) {
+        input.addEventListener("input", function () {
+          // Remove tudo que não for número
+          let numbers = input.value.replace(/\D/g, "");
+    
+          // Limita o número a no máximo 11 dígitos (celular) ou 10 (fixo)
+          if (numbers.length > 11) {
+            numbers = numbers.slice(0, 11);
+          }
+    
+          // Aplica formatação dependendo da quantidade
+          if (numbers.length <= 10) {
+            // Fixo (ex: (11) 3456-7890)
+            numbers = numbers.replace(/^(\d{2})(\d{4})(\d{0,4})$/, "($1) $2-$3");
+          } else {
+            // Celular (ex: (11) 91234-5678)
+            numbers = numbers.replace(/^(\d{2})(\d{5})(\d{0,4})$/, "($1) $2-$3");
+          }
+    
+          input.value = numbers.trim();
+        });
+    
+        const form = input.closest("form");
+        if (form && !form.classList.contains("telefone-validado")) {
+          form.classList.add("telefone-validado");
+    
+          form.addEventListener("submit", function (e) {
+            const value = input.value.trim();
+            const onlyNumbers = value.replace(/\D/g, "");
+    
+            const isCelular = onlyNumbers.length === 11 && onlyNumbers.slice(2, 3) === "9";
+            const isFixo = onlyNumbers.length === 10 && onlyNumbers.slice(2, 3) !== "9";
+    
+            if (!isCelular && !isFixo) {
+              e.preventDefault();
+              alert("Por favor, insira um número válido. Formatos aceitos: (00) 0000-0000 ou (00) 9 0000-0000.");
+            }
+          });
+        }
+      }
+    
+      function aplicarValidacao() {
+        const inputs = document.querySelectorAll('input[type="tel"][id^="form-field-telefone"]');
+    
+        inputs.forEach(input => {
+          if (!initialized.has(input)) {
+            initialized.add(input);
+            formatarTelefone(input);
+          }
+        });
+      }
+    
+      // Checagem recorrente para inputs em popups
+      setInterval(aplicarValidacao, 500);
+    })();
+    </script>
+    
