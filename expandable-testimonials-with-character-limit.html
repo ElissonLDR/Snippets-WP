@@ -1,0 +1,84 @@
+<!-- ______________________COM LIMITAÇÃO DE CARACTERES__________________________ -->
+<!-- Sites exemplos: https://vascularacademy.com.br/ https://clinicaotoz.com.br/ -->
+
+
+
+<!-- FUNÇÃO PARA ABRIR E FECHAR DEPOIMENTOS GRANDES -->
+<script>
+    const depoimentos = document.querySelectorAll('.alunos .et_pb_blurb_container');
+
+    depoimentos.forEach((depoimento) => {
+        const descricao = depoimento.querySelector('.et_pb_blurb_description');
+        const conteudoDescricao = descricao.textContent;
+
+        if (conteudoDescricao.length > 225) {
+            // Adicionar botões e funcionalidade de toggle
+            const divAberto = document.createElement("div");
+            divAberto.classList.add("aberto");
+            divAberto.textContent = "Ver mais";
+            depoimento.appendChild(divAberto);
+
+            const divFechado = document.createElement("div");
+            divFechado.classList.add("fechado");
+            divFechado.textContent = "Fechar";
+            depoimento.appendChild(divFechado);
+
+            depoimento.addEventListener('click', () => {
+                const possuiClasseAberto = depoimento.classList.contains('aberto');
+
+                depoimentos.forEach((outroDepoimento) => {
+                    outroDepoimento.classList.remove('aberto');
+                });
+
+                if (!possuiClasseAberto) {
+                    depoimento.classList.add('aberto');
+                } else {
+                    depoimento.classList.remove('aberto');
+                }
+            });
+        }
+    });
+</script>
+
+
+<!-- ______________________COM LIMITAÇÃO DE CARACTERES__________________________ -->
+<!-- FUNÇÃO PARA ABRIR E FECHAR DEPOIMENTOS GRANDES -->
+<script>
+    const depoimentos = document.querySelectorAll('.alunos .et_pb_blurb_container');
+
+    depoimentos.forEach((depoimento) => {
+        const descricao = depoimento.querySelector('.et_pb_blurb_description');
+        const conteudoDescricao = descricao.textContent;
+
+        if (conteudoDescricao.length > 225) {
+            depoimento.classList.add('texto-extenso');
+
+            // Adicionar botões e funcionalidade de toggle
+            const divAberto = document.createElement("div");
+            divAberto.classList.add("aberto");
+            divAberto.textContent = "Ver mais";
+            depoimento.appendChild(divAberto);
+
+            const divFechado = document.createElement("div");
+            divFechado.classList.add("fechado");
+            divFechado.textContent = "Fechar";
+            depoimento.appendChild(divFechado);
+
+            depoimento.addEventListener('click', () => {
+                const possuiClasseAberto = depoimento.classList.contains('aberto');
+
+                depoimentos.forEach((outroDepoimento) => {
+                    outroDepoimento.classList.remove('aberto');
+                });
+
+                if (!possuiClasseAberto) {
+                    depoimento.classList.add('aberto');
+                    depoimento.classList.remove('texto-extenso'); // Remover a classe para permitir que a div expanda
+                } else {
+                    depoimento.classList.remove('aberto');
+                    depoimento.classList.add('texto-extenso'); // Adicionar a classe para limitar a altura
+                }
+            });
+        }
+    });
+</script>

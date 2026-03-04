@@ -1,0 +1,58 @@
+<!-- Função Javascript para abrir accordion direto de link -->
+<script>
+	(function($){
+		let hash = '';
+		function doClasses(url){
+			hash = url;
+			let target = '.' + hash,
+				module_check = hash.split("_");
+			if(module_check[2] == 'accordion' || module_check[2] == 'toggle'){
+				if(!$(target).hasClass('et_pb_toggle_open')){
+					$(target).toggleClass('et_pb_toggle_open et_pb_toggle_close');
+					$(target).siblings('.et_pb_accordion_item').removeClass('et_pb_toggle_open').addClass('et_pb_toggle_close');
+				}
+			}
+      if((module_check[1] == 'advanced' && module_check[2] == 'tab')){
+        $(target).click();
+      }
+		}
+		function scrollToElement(el){
+				let elementTop = $('.' + el).offset().top,
+				    headerTop = 90;
+				if($('body').hasClass('et_fixed_nav')){
+					headerTop = $('header').height() + 90;
+			}
+			let scrollTo = elementTop - headerTop;
+			$('html, body').animate({scrollTop: scrollTo + "px"}, 300);
+		}
+		function loadToggle(){
+			if( window.location.hash.slice(1) && (window.location.hash.slice(1).includes('accordion') ||  window.location.hash.slice(1).includes('toggle') )){
+				doClasses(window.location.hash.slice(1));
+            	scrollToElement(window.location.hash.slice(1));		
+			}
+		}
+        function clickToggle(){
+            $('a').click(function(e){
+				const href = $(this).attr('href'),
+					  splitHref = href.split('#'),
+					  postHref = splitHref[1];
+				doClasses(postHref);
+                scrollToElement(postHref)
+			});
+        }
+		$(document).ready(function(){
+			loadToggle();
+			$('a').off();
+			clickToggle();
+		});
+	})(jQuery)
+</script>
+
+<!-- 
+IMPORTANTE!
+exemplo: http://sitekapital.com.br/diana-girardi/  -     http://sitekapital.com.br/eliana-stagliorio/
+_____________________________________________________________________________
+1- colocar classe nos acordeons iniciando em et_pb_toggle_0, et_pb_toggle_1...
+2- colocar link para o arcodeon como #et_pb_toggle_0
+_____________________________________________________________________________
+ -->

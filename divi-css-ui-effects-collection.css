@@ -1,0 +1,54 @@
+/* __BOTÕES__ */
+
+/* BOTÃ0 NORMAL: PREENCHIDO; HOVER: TRAÇO CENTRAL */
+.et_pb_button{ padding: 5px !important; max-width: 300px; width: 100%; text-align: center; } 
+.et_pb_button::after{ content: ''; background: #C67876; width: 100%; height: 100%; position: absolute; margin-left: 0 !important; left: 0; bottom: 0; opacity: 1; z-index: -1; border-radius: 100px }
+.et_pb_button:hover::after{ width: 100px; height: 3px; left: 50%; transform: translate(-50%) }
+
+/* BOTÃO COM BORDAS E FUNDO GRADIENTE */
+.et_pb_button_0 { position: relative; background: linear-gradient(180deg, #CC8800 0%, #FFF1A1 100%); width: 370px; text-align: center; }
+.et_pb_button_0::after { content: ""; position: absolute; top: 0; right: 0px; bottom: 0; left: 0; background: linear-gradient(to bottom, #FFF1A1, #CC8800) !important; z-index: -1; margin: -4px !important; border-radius: inherit; }
+
+/* BOTÃO COM BORDA GRADIENTE 2 */
+.et_pb_button::before{ content: '' !important; display: block; position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin-left: 0; padding: 1px; background: linear-gradient(45deg, #684E18, #B7AB71, #4E3C16); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 1; }
+
+/* BOTÃO COM ANIMAÇÃO PREENCHIMENTO COMPLETANDO */
+.et_pb_button::after{content:""; background-color: #ffffffbd; width: 0%; height: 100%; position: absolute !important; left: 50%; top: 50%; opacity: 1 !important; display: block; transition: ease .8s;  transform: translate(-50%,-50%); margin-left: 0em !important; z-index: -1;}
+.et_pb_button:hover::after {width: 101%; transition: ease .8s;}
+
+/* BOTÃO PREENCHIDO E HOVER MOSTRANDO ICONE À DIREITA  http://sitekapital.com.br/claudia-moraes */
+.et_pb_button{ color: #fff; width: 100%; max-width: 373px; text-align: center; padding: 5px 10px !important; overflow: hidden; }
+.et_pb_button::before{ content: ''; display: block; background: #7B8778; width: 100%; height: 100%; left: 0; top: 0; opacity: 1; margin: auto; z-index: -1; border-radius: 50px; }
+.et_pb_button:hover::before{ width: 85%; }
+.et_pb_button::after{ z-index: -2; padding: 0; width: 20%; top: 0; right: 0; font-size: 24px !important; background: #F0F0F0; color: #7B8778; }
+
+
+/* __DIVERSOS__ */
+
+/* ANIMAÇÃO NA BARRA DE ROLAGEM */
+body::-webkit-scrollbar { width: 12px; }
+body::-webkit-scrollbar-track { background: #ffffff42; }
+body::-webkit-scrollbar-thumb { background-color: #CEA88A; border-radius: 0px; border: 0px solid #CEA88A;  }
+body::-webkit-scrollbar-thumb:hover{ background: #795c46; }
+
+/* ANIMAÇÃO HOVER LINHA MENU */
+.menu-fixo li a::after { content: ''!important;   background: #fff; width: 0; top: auto!important; height: 2px; display: block; margin: 0 auto; position: relative!important; bottom: -5px; transition: .2s ease; }
+.menu-fixo li:hover a::after{ width: 80%; }
+
+/* LOGOTIPO MENU DIMINUINDO */
+.et_pb_menu__logo-wrap img{transition: ease-in-out .7s !important; padding: 5px;}
+.has_et_pb_sticky .et_pb_menu__logo-wrap img{max-width: 70% !important;}
+
+/* CONFIGURAÇÃO SUB-MENU  */
+#menu-menu-principal .sub-menu li, #menu-menu-principal .sub-menu a, #menu-menu-principal .sub-menu { width: 300px;  padding: 5px 0; text-align: center; }
+
+/* CLIP PATH IMAGENS */
+.img-interna {
+    -webkit-mask-image: url(‘http://sitekapital.com.br/sandra-ennes/wp-content/uploads/2022/06/sandra-ennes-harmonizacao-facial-interna.png’);
+    mask-image: url(‘http://sitekapital.com.br/sandra-ennes/wp-content/uploads/2022/06/sandra-ennes-harmonizacao-facial-interna.png’);
+    mask-size: cover;
+    -webkit-mask-size: cover;
+    mask-position: center bottom;
+    mask-repeat: no-repeat !important;
+    -webkit-mask-position: center bottom;
+}

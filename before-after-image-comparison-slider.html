@@ -1,0 +1,42 @@
+<!-- JS -->
+<script>
+    let mousedown = false;
+    let antesDepois = document.querySelector('.antes-depois');
+    let startX;
+    function start(e) {
+        mousedown = true;
+        startX = e.pageX - antesDepois.getBoundingClientRect().left;
+    }
+    function end(e) {
+        mousedown = false;
+    }
+    function move(e) {
+        if (!mousedown) return;
+        let x = e.pageX - antesDepois.getBoundingClientRect().left;
+        if (x < 10) x = 10;
+        if (x > antesDepois.offsetWidth) x = antesDepois.offsetWidth;
+        antesDepois.style.setProperty('--x', `${x}px`);
+    }
+    // Eventos desktop
+    antesDepois.addEventListener('mousedown', start);
+    window.addEventListener('mouseup', end);
+    antesDepois.addEventListener('mousemove', move);
+    // Eventos mobile
+    antesDepois.addEventListener('touchstart', start);
+    window.addEventListener('touchend', end);
+    antesDepois.addEventListener('touchmove', move);
+</script>
+
+
+<!-- CSS -->
+ <style>
+.antes-depois {width: 100%; height: 370px; background-image: url('https://sitekapital.com.br/mens-filler/wp-content/uploads/2024/01/mens-filler-imagem-depois.jpg'); display: block; position: relative;}
+.antes-depois .antes {position: relative; width: var(--x, 50%); height: 100%; position: absolute; left: 0; top: 0; background-image: url('https://sitekapital.com.br/mens-filler/wp-content/uploads/2024/01/mens-filler-imagem-antes.jpg'); z-index: 2;}
+.antes-depois .antes::after {content:""; width: 3px; height: 110%; right: 0; top: -5%; cursor: ew-resize; background-color: #5BA9BC; position: absolute;}
+.antes-depois .antes::before {content:""; width: 20px; height: 20px; right: -8px; border-radius: 100%; top: calc(50% - 10px); cursor: ew-resize; background-color: #5BA9BC; position: absolute;}
+</style>
+
+<!-- HTML -->
+<span class="antes-depois">
+    <div class="antes"></div>
+</span>

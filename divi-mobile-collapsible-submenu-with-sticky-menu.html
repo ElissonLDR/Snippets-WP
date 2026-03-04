@@ -1,0 +1,90 @@
+<style>
+*** colar na parte do Css***
+/* Menu Collapse */
+/**** This hides the sub menu items on mobile ****/
+
+#page-container .mobile_nav li ul.hide {
+    display: none !important;
+}
+
+/**** This adjusts the positioning and the background transparency of the parent menu
+item on mobile ****/
+
+#page-container .mobile_nav .menu-item-has-children {
+    position: relative;
+}
+
+#page-container .mobile_nav .menu-item-has-children>a {
+    background: transparent;
+}
+
+/**** Estilos do ícone ****/
+
+#page-container .mobile_nav .menu-item-has-children>a+span {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px 20px;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    z-index: 3;
+    width: 100%; /*Deixa o link clicável*/
+}
+
+/**** Importando o Ícone ****/
+
+#page-container span.menu-closed:before {
+    content: "+";
+    display: block;
+    color: #fff;
+    font-size: 20px;
+    text-align: right; /*Deixa o ícone alinhado à direita*/
+}
+
+#page-container span.menu-closed.menu-open:before {
+    content: "-";
+}
+</style>
+
+<!-- ***Colar o código no <head> dentro da parte de "integração" *** -->
+
+<!-- CÓDIGO PARA MENU MOBILE -->
+<script>
+    jQuery(function($) {
+        var menu = $("#menu-fixo");
+        menuHeight = $("#menu-fixo").outerHeight();
+
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > menuHeight) {
+                menu.addClass("is-sticky");
+            } else {
+                menu.removeClass("is-sticky");
+            }
+        });
+    });
+</script>
+
+<!-- Menu Collapse -->
+<script>
+    (function($) {
+        function setup_collapsible_submenus() {
+            // mobile menu
+            $('.mobile_nav .menu-item-has-children > a').after('<span class="menu-closed"></span>');
+            $('.mobile_nav .menu-item-has-children > a').each(function() {
+                $(this).next().next('.sub-menu').toggleClass('hide', 1000);
+            });
+            $('.mobile_nav .menu-item-has-children > a + span').on('click', function(event) {
+                event.preventDefault();
+                $(this).toggleClass('menu-open');
+                $(this).next('.sub-menu').toggleClass('hide', 1000);
+            });
+        }
+        $(window).load(function() {
+            setTimeout(function() {
+                setup_collapsible_submenus();
+            }, 700);
+        });
+    })(jQuery);
+</script>
+

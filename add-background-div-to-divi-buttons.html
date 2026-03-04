@@ -1,0 +1,36 @@
+<!-- FUNÇÃO PARA ADICIONAR UMA DIV NOS BOTÕES -->
+<script>
+	var elementos = document.querySelectorAll(".et_pb_button");
+	elementos.forEach(elemento => {
+		var novaDiv = document.createElement("div");
+		novaDiv.classList.add("background");
+		elemento.appendChild(novaDiv);
+	});
+</script>
+
+
+
+<!-- FUNÇÃO PARA ADICIONAR VARIAS DIVS E CLASSES NOS BOTÕES -->
+<script>
+	var elementos = document.querySelectorAll(".et_pb_button");
+	elementos.forEach(elemento => {
+		var bLeft = document.createElement("div");
+		var bRight = document.createElement("div");
+		var bTopRight = document.createElement("div");
+		var bTopLeft = document.createElement("div");
+		var bBottomRight = document.createElement("div");
+		var bBottomLeft = document.createElement("div");
+		bLeft.classList.add("border", "b-left");
+		bRight.classList.add("border", "b-right");
+		bTopRight.classList.add("border", "b-top-right");
+		bTopLeft.classList.add("border", "b-top-left");
+		bBottomRight.classList.add("border", "b-bottom-right");
+		bBottomLeft.classList.add("border", "b-bottom-left");
+		elemento.appendChild(bLeft);
+		elemento.appendChild(bRight);
+		elemento.appendChild(bTopRight);
+		elemento.appendChild(bTopLeft);
+		elemento.appendChild(bBottomRight);
+		elemento.appendChild(bBottomLeft);
+	});
+</script>

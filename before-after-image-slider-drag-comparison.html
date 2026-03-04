@@ -1,0 +1,89 @@
+<!-- SITE EXEMPLO: https://sitekapital.com.br/bruno-klaudat/cirurgia-ortognatica/ -->
+
+<!-- FUNÇÃO PARA CRIAR O EVENTO DE ANTES E DEPOIS -->
+<script>
+    const parentDiv = document.querySelector('.img-antes-depois');
+    const newDiv = document.createElement('div');
+    newDiv.classList.add('img-depois');
+    parentDiv.appendChild(newDiv);
+
+    let mousedown = false;
+    let antesDepois = document.querySelector('.img-antes-depois');
+    let startX;
+
+    function start(e) {
+        mousedown = true;
+        startX = (e.touches ? e.touches[0].pageX : e.pageX) - antesDepois.getBoundingClientRect().left;
+    }
+
+    function end(e) {
+        mousedown = false;
+    }
+
+    function move(e) {
+        if (!mousedown) return;
+        let x = (e.touches ? e.touches[0].pageX : e.pageX) - antesDepois.getBoundingClientRect().left;
+        if (x < 10) x = 10;
+        if (x > antesDepois.offsetWidth) x = antesDepois.offsetWidth;
+        antesDepois.style.setProperty('--x', `${x}px`);
+    }
+
+    // Eventos desktop
+    antesDepois.addEventListener('mousedown', start);
+    window.addEventListener('mouseup', end);
+    antesDepois.addEventListener('mousemove', move);
+
+    // Eventos mobile
+    antesDepois.addEventListener('touchstart', start);
+    window.addEventListener('touchend', end);
+    antesDepois.addEventListener('touchmove', move);
+</script>
+
+
+<!-- CÓDIGO CSS -->
+<style>
+    /* IMAGEM ANTES E DEPOIS */
+    .img-antes-depois .img-depois {
+        width: var(--x, 50%);
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: url('https://sitekapital.com.br/bruno-klaudat/wp-content/uploads/2024/05/Imagem-depois-cirurgia-ortognatica-Bruno-Klaudat.jpg')no-repeat left/cover;
+        z-index: 2;
+    }
+
+    .img-antes-depois .img-depois::after {
+        content: "";
+        width: 6px;
+        height: 100%;
+        right: 0;
+        top: 0;
+        cursor: ew-resize;
+        background-color: #F7F7F7;
+        position: absolute;
+    }
+
+    .img-antes-depois .img-depois::before {
+        content: '';
+        background: url('https://sitekapital.com.br/bruno-klaudat/wp-content/uploads/2024/05/Icone-antes-depois.png')no-repeat center/contain;
+        width: 53px;
+        height: 53px;
+        position: absolute;
+        top: 50%;
+        transform: translatey(-50%);
+        right: -23px;
+        cursor: ew-resize;
+    }
+
+    /* MOBILE */
+    @media only screen and (max-width: 768px) {
+
+        /* IMAGEM ANTES E DEPOIS */
+        .img-antes-depois .img-depois::before {
+            width: 35px;
+            height: 35px;
+            right: -14px;
+        }
+    }
+</style>
