@@ -1,0 +1,66 @@
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const elements = document.querySelectorAll(".title-reveal .elementor-heading-title");
+
+        let lastScroll = window.scrollY;
+
+        function updateTitles() {
+
+            const scroll = window.scrollY;
+            const scrollingDown = scroll > lastScroll;
+
+            elements.forEach(el => {
+
+                const rect = el.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                const triggerPoint = windowHeight * 0.8;
+
+                if (rect.top < triggerPoint && rect.bottom > 0) {
+                    el.classList.add("in-view");
+                    el.classList.remove("out-view");
+                }
+                else {
+                    if (scrollingDown) {
+                        el.classList.remove("in-view");
+                        el.classList.add("out-view");
+                    }
+                }
+
+            });
+
+            lastScroll = scroll;
+
+        }
+
+        updateTitles();
+
+        window.addEventListener("scroll", updateTitles);
+
+    });
+</script>
+
+<style>
+    /*ESTILO 1*/
+    .title-reveal .elementor-heading-title {
+        opacity: 0;
+        transform: translateX(-40px);
+        letter-spacing: -10px;
+        transition: all 2s cubic-bezier(.25, .6, .2, 1);
+    }
+
+    /*ESTILO 2*/
+    .title-reveal .elementor-heading-title.in-view {
+        opacity: 1;
+        transform: translateX(0);
+        letter-spacing: normal;
+    }
+
+    /*ESTILO 3*/
+    .title-reveal .elementor-heading-title.out-view {
+        opacity: 0;
+        transform: translateX(40px);
+        letter-spacing: 20px;
+    }
+</style>

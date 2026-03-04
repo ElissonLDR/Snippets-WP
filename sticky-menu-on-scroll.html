@@ -1,0 +1,20 @@
+<!-- Body End -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const menu = document.getElementById("main-menu");
+
+        if (!menu) return;
+
+        function toggleStickyMenu() {
+            if (window.scrollY > 10) {
+                menu.classList.add("sticky");
+            } else {
+                menu.classList.remove("sticky");
+            }
+        }
+
+        window.addEventListener("scroll", toggleStickyMenu);
+
+    });
+</script>

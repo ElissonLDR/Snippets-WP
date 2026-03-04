@@ -1,0 +1,50 @@
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const title = document.querySelector(".title-hero .elementor-heading-title");
+        if (!title) return;
+
+        const text = title.innerText;
+        const words = text.split(" ");
+
+        title.innerHTML = words.map(word =>
+            `<span class="hero-word">${word}</span>`
+        ).join(" ");
+
+        const spans = title.querySelectorAll(".hero-word");
+
+        const startDelay = 0.6;
+
+        spans.forEach((span, i) => {
+            span.style.animationDelay = (startDelay + i * 0.35) + "s";
+        });
+
+    });
+</script>
+<style>
+    /*ESTILO 1*/
+    .title-hero .elementor-heading-title {
+        overflow: hidden;
+    }
+
+    /*ESTILO 2*/
+    .title-hero .hero-word {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(-50px);
+        animation: heroDrop 4s cubic-bezier(.19, 1, .22, 1) forwards;
+    }
+
+    /*ESTILO 3*/
+    @keyframes heroDrop {
+        0% {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
