@@ -1,29 +1,48 @@
-# Masternet Plan Selector
+# 🚀 Masternet Plan Selector
 
 Componente interativo desenvolvido para o site da Masternet.
 
-Permite que o usuário:
+Permite que o usuário selecione um plano de internet e escolha os apps incluídos, gerando automaticamente uma mensagem para envio via WhatsApp.
 
-- Selecione um plano de internet
-- Escolha apps inclusos no plano
-- Envie automaticamente a seleção para o WhatsApp
+---
 
-A liberação do botão acontece apenas quando todas as escolhas obrigatórias do plano são concluídas.
+## ✨ Funcionalidades
 
-## Funcionalidades
+- 📡 Seleção de planos de internet
+- 📱 Escolha de apps inclusos no plano
+- 🔢 Controle de quotas por categoria (Standard, Advanced e Premium)
+- ✅ Validação automática das escolhas
+- 💬 Integração direta com WhatsApp
+- ⚡ Interface rápida e sem dependências externas
 
-- Seleção dinâmica de planos
-- Controle de quotas por categoria
-- Seleção de apps Standard, Advanced e Premium
-- Validação automática das escolhas
-- Integração com WhatsApp
+---
 
-## Tecnologias
+## 🧩 Tecnologias
 
-- HTML
-- CSS
-- JavaScript Vanilla
+- 🌐 HTML
+- 🎨 CSS
+- ⚙️ JavaScript (Vanilla)
 
-## Desenvolvido por
+---
 
-Elisson Lemos Dias Rodrigues
+## 🎯 Objetivo
+
+Criar um componente simples e eficiente para o site, permitindo que usuários escolham seus apps incluídos no plano antes de iniciar o atendimento via WhatsApp.
+
+Esse fluxo ajuda a:
+
+- reduzir fricção no atendimento
+- qualificar melhor o lead
+- acelerar o processo de contratação
+
+---
+
+## 🌐 Site em Produção
+
+🔗 https://masternetrs.com.br/
+
+---
+
+## 👨‍💻 Desenvolvido por
+
+**Elisson Lemos Dias Rodrigues**
